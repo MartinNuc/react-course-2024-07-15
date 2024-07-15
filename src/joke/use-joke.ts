@@ -7,18 +7,24 @@ type JokeResponse = {
 
 export function useJoke() {
   const [joke, setJoke] = useState<string>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchJoke();
   }, []);
 
-  function fetchJoke() {
-    axios.get<JokeResponse>('https://api.chucknorris.io/jokes/random').then(
-      response => setJoke(response.data.value)
-    );
+  async function fetchJoke() {
+    setIsLoading(true);
+    try {
+      const response = await axios.get<JokeResponse>('https://api.chucknorris.io/jokes/random');
+      setJoke(response.data.value);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return {
+    isLoading,
     joke,
     refetch: fetchJoke
   };
