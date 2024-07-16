@@ -8,5 +8,8 @@ export function Navbar() {
     <li>
       <Link to="/votes">Album voting</Link>
     </li>
+    <li>
+      <Link to="/categories">Categories</Link>
+    </li>
   </ul>
 }
