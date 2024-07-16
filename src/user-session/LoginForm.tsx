@@ -6,7 +6,7 @@ export function LoginForm() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
 
-  return <div>
+  return <div data-testid="LoginForm">
     <input placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
     <input placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
