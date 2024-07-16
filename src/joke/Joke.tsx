@@ -2,6 +2,7 @@ import { useJoke } from "./use-joke";
 
 export function Joke() {
 
+  const jokeHook = useJoke();
   const { joke, refetch, isLoading } = useJoke();
 
   return <>
