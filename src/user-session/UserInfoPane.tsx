@@ -1,9 +1,9 @@
+import { useAppSelector } from "../store/hook";
 import { CurrentUserInfo } from "./CurrentUserInfo";
 import { LoginForm } from "./LoginForm";
-import { useUser } from "./UserContextProvider";
 
 export function UserInfoPane() {
-  const { user } = useUser();
+  const user = useAppSelector(store => store.userSessionSlice.user);
 
   return <div>
     {user ? <CurrentUserInfo /> : <LoginForm />}

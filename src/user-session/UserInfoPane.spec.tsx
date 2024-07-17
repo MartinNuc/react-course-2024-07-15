@@ -1,14 +1,15 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { UserInfoPane } from "./UserInfoPane";
-import { UserContextProvider } from "./UserContextProvider";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 
 function setup() {
 
   function renderTest() {
     render(
-      <UserContextProvider>
+      <Provider store={store}>
         <UserInfoPane />
-      </UserContextProvider>
+      </Provider>
     );
   }
 

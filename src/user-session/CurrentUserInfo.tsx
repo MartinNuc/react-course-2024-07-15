@@ -1,13 +1,15 @@
-import { useUser } from "./UserContextProvider";
+import { useAppDispatch, useAppSelector } from "../store/hook";
+import { logout } from "../store/user-session-slice";
 
 export const CurrentUserInfo = () => {
-  const {user, logout} = useUser();
+  const user = useAppSelector(store => store.userSessionSlice.user);
+  const dispatch = useAppDispatch();
 
   if (!user) { return null; }
 
   return <>
     <p>username: {user.username}</p>
     <p>email: {user.email}</p>
-    <button onClick={logout}>logout</button>
+    <button onClick={() => dispatch(logout())}>logout</button>
   </>;
 }
