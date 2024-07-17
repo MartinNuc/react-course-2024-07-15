@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { AlbumVoting } from "../album/AlbumVoting";
 import { Layout } from "./Layout";
 import { JokeCategories } from "../joke/JokeCategories";
+import { Joke } from "../joke/Joke";
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +15,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'categories',
-        element: <JokeCategories />
+        element: <JokeCategories />,
+        children: [{
+          path: ':category',
+          element: <Joke />
+        }]
       }
     ]
   }
