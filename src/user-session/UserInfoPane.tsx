@@ -6,7 +6,6 @@ export function UserInfoPane() {
   const { user } = useUser();
 
   return <div>
-    Ahoj
     {user ? <CurrentUserInfo /> : <LoginForm />}
   </div>
 }
