@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { Joke } from "./Joke";
 
 export function JokeCategories() {
   const [categories, setCategories] = useState<string[]>([]);
@@ -17,3 +18,4 @@ export function JokeCategories() {
     <Outlet />
   </>
 }
+
