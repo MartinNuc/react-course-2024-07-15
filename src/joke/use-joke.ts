@@ -1,32 +1,28 @@
 import axios from 'axios';
 import { useCallback } from 'react';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 
 type JokeResponse = {
   value: string;
 };
 
-export function useJoke(category?: string) {
-  const fetcher = useCallback(
-    (url: string) =>
-      axios
-        .get(url, {
-          params: {
-            category,
-          },
-        })
-        .then((res) => res.data),
-    [category]
-  );
+const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
-  const { data, isValidating } = useSWR<JokeResponse>(
-    `https://api.chucknorris.io/jokes/random?${category}`,
-    fetcher
-  );
+export function useJoke(category?: string) {
+  const searchParams = new URLSearchParams();
+  if (category) {
+    searchParams.set('category', category);
+  }
+
+  const { mutate } = useSWRConfig();
+
+  const cacheKey = `https://api.chucknorris.io/jokes/random?${searchParams.toString()}`;
+
+  const { data, isValidating } = useSWR<JokeResponse>(cacheKey, fetcher);
 
   return {
     isLoading: isValidating,
     joke: data?.value,
-    refetch: () => {},
+    refetch: () => mutate(cacheKey),
   };
 }
