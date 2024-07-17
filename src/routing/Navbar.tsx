@@ -6,6 +6,9 @@ export function Navbar() {
       <Link to="/">Home</Link>
     </li>
     <li>
+      <Link to="/modal">Modal</Link>
+    </li>
+    <li>
       <Link to="/votes">Album voting</Link>
     </li>
     <li>

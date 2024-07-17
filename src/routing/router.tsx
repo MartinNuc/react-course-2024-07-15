@@ -4,6 +4,7 @@ import { Layout } from "./Layout";
 import { JokeCategories } from "../joke/JokeCategories";
 import { Joke } from "../joke/Joke";
 import { Suspense } from "react";
+import { ModalPage } from "../modal-page/modal-page";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
       {
         path: 'votes',
         element: <AlbumVoting />
+      },
+      {
+        path:'modal',
+        element: <ModalPage />
       },
       {
         path: 'categories',
