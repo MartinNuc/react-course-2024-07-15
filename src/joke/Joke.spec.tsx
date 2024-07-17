@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Joke } from "./Joke";
 import axios from 'axios';
 
@@ -15,15 +15,17 @@ describe('Joke', () => {
     });
   })
 
-  it('shows disabled button while joke is fetching', () => {
+  it('shows disabled button while joke is fetching', async () => {
     render(<Joke />);
     const fetchNextButton = screen.getByRole('button', { name: 'Load next' });
     expect(fetchNextButton).toBeDisabled();
+    await screen.findByText('This is a joke');
   });
 
   it('fetches the joke and displayes it', async () => {
     render(<Joke />);
-    expect(await screen.findByText('This is a joke')).toBeInTheDocument();
+    const joke = await screen.findByText('This is a joke');
+    expect(joke).toBeInTheDocument();
   });
 
 })
