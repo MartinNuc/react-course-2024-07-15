@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useCallback } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 
 type JokeResponse = {
@@ -18,7 +17,7 @@ export function useJoke(category?: string) {
 
   const cacheKey = `https://api.chucknorris.io/jokes/random?${searchParams.toString()}`;
 
-  const { data, isValidating } = useSWR<JokeResponse>(cacheKey, fetcher);
+  const { data, isValidating } = useSWR<JokeResponse>(cacheKey, fetcher, { suspense: true });
 
   return {
     isLoading: isValidating,

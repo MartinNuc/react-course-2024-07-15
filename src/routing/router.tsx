@@ -3,6 +3,7 @@ import { AlbumVoting } from "../album/AlbumVoting";
 import { Layout } from "./Layout";
 import { JokeCategories } from "../joke/JokeCategories";
 import { Joke } from "../joke/Joke";
+import { Suspense } from "react";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,9 @@ export const router = createBrowserRouter([
         element: <JokeCategories />,
         children: [{
           path: ':category',
-          element: <Joke />
+          element: <Suspense fallback={<h1>Loading joke with Suspense</h1>}>
+            <Joke />
+          </Suspense>
         }]
       }
     ]
